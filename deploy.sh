@@ -9,12 +9,17 @@ then
         then
               echo 'you are in dev env';
               sshpass -p 'Onstak123' ssh -o StrictHostKeyChecking=no user@172.16.180.71 << EOF
-              mkdir Folder
-              cd Folder
-               mkdir Folder1
+              
+              echo 'pulling the code'
                 #cd score-ui/
                 #git pull
+                
+                echo 'build'
                 #npm run build_dev;
+                
+                echo 'deplot in dev'
+                #sudo cp -r ./dist/UI/* /var/www/html;
+
 EOF
 
         elif [ $2 =  "qa" ]
@@ -23,15 +28,27 @@ EOF
                  sshpass -p 'Onstak123' ssh -o StrictHostKeyChecking=no user@172.16.186.169 << EOF
                 #cd score-ui
                 #git pull
+                
+                echo 'build'
                 #npm run build_qa;
+                
+                echo 'deploy in qa'
+                #sudo cp -r ./dist/UI/* /var/www/html;
+
 EOF
 
         elif [ $2 = 'prod' ]
         then
-                echo 'you didnt entered arugments from command line: PLEASE Enter arugment';
+                echo 'you are in prod';
+                #cd score-ui
                 #git pull
                 #npm run build_prod;
+                
+                echo 'build'
                 #sudo nohup npm run prod &
+                
+                echo ' deploy in prod'
+                #sudo cp -r ./dist/UI/* /var/www/html;
         else
                 echo ' you are ready for deloy but select where you are deploy'
 
